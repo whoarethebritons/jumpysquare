@@ -1,6 +1,6 @@
-package com.example.flappy;
+/*package com.example.flappy;
 
-/*
+
  * Copyright (C) 2011 The Android Open Source Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,7 +14,7 @@ package com.example.flappy;
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */
+ 
 
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
@@ -25,9 +25,9 @@ import com.example.flappy.BlActivity.*;
 
 import android.opengl.GLES20;
 
-/**
+*//**
  * A two-dimensional square for use as a drawn object in OpenGL ES 2.0.
- */
+ *//*
 public class Square {
 
     private final String vertexShaderCode =
@@ -70,9 +70,9 @@ public class Square {
 
     float color[] = { 0.2f, 0.709803922f, 0.898039216f, 1.0f };
 
-    /**
+    *//**
      * Sets up the drawing object data for use in an OpenGL ES context.
-     */
+     *//*
     public Square() {
         // initialize vertex byte buffer for shape coordinates
         ByteBuffer bb = ByteBuffer.allocateDirect(
@@ -106,12 +106,12 @@ public class Square {
         GLES20.glLinkProgram(mProgram);                  // create OpenGL program executables
     }
 
-    /**
+    *//**
      * Encapsulates the OpenGL ES instructions for drawing this shape.
      *
      * @param mvpMatrix - The Model View Project matrix in which to draw
      * this shape.
-     */
+     *//*
     public void draw(float[] mvpMatrix) {
         // Add program to OpenGL environment
         GLES20.glUseProgram(mProgram);
@@ -151,4 +151,4 @@ public class Square {
         GLES20.glDisableVertexAttribArray(mPositionHandle);
     }
 
-}
+}*/
