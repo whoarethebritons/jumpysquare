@@ -11,6 +11,7 @@ import android.support.v4.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Message;
 import android.view.*;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -22,20 +23,23 @@ public class BlActivity extends ActionBarActivity {
 	private RefreshHandler mRedrawHandler = new RefreshHandler();
 
 	  class RefreshHandler extends Handler {
-	    public void handleMessage() {
+		  @Override
+	    public void handleMessage(Message msg) {
 	      BlActivity.this.updateUI();
 	    }
 
 	    public void sleep(long delayMillis) {
+	      this.removeMessages(0);
 	      sendMessageDelayed(obtainMessage(0), delayMillis);
 	    }
 	  };
-
+	  
 	  private void updateUI(){
+		mRedrawHandler.sleep(1000);
 		mcdv.setdy(5);
   		mcdv.setLoc();
   		setContentView(mcdv);
-  		mRedrawHandler.sleep(1000);
+  		
 	    
 	   }
 	  
@@ -44,12 +48,9 @@ public class BlActivity extends ActionBarActivity {
     public void onCreate(Bundle savedInstanceState) {
     	Intent intent = getIntent();
         super.onCreate(savedInstanceState);
-        //tv.setBackgroundDrawable(shape);
-		//setContentView(R.layout.activity_bl);
         
 		mcdv = new CustomDrawableView(this);
 		
-	    //setContentView(mcdv);
 	    updateUI();
 	    /*
 		if (savedInstanceState == null) {
@@ -97,7 +98,6 @@ public class BlActivity extends ActionBarActivity {
 	
 	public boolean onTouchEvent(MotionEvent e) {	        
         switch (e.getAction()) {
-        	//case OnGestureListener.onSingleTapUp(e)
         	case MotionEvent.ACTION_UP:		
         		mcdv.setdy(-10);
         		mcdv.setLoc();
