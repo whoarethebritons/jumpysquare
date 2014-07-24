@@ -1,28 +1,29 @@
 package com.example.flappy;
 
-
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.*;
-import android.widget.EditText;
+import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
 import android.os.Build;
 
-public class BlActivity extends ActionBarActivity {
+public class EndActivity extends ActionBarActivity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_bl);
+		setContentView(R.layout.activity_end);
 
 		if (savedInstanceState == null) {
 			getSupportFragmentManager().beginTransaction()
 					.add(R.id.container, new PlaceholderFragment()).commit();
 		}
 	}
-	
 	public void playGame(View view) {
 	    Intent intent = new Intent(this, BlActivity.class);
 	    startActivity(intent);
@@ -32,7 +33,7 @@ public class BlActivity extends ActionBarActivity {
 	public boolean onCreateOptionsMenu(Menu menu) {
 
 		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.bl, menu);
+		getMenuInflater().inflate(R.menu.end, menu);
 		return true;
 	}
 
@@ -59,10 +60,10 @@ public class BlActivity extends ActionBarActivity {
 		@Override
 		public View onCreateView(LayoutInflater inflater, ViewGroup container,
 				Bundle savedInstanceState) {
-			View rootView = inflater.inflate(R.layout.fragment_bl, container,
+			View rootView = inflater.inflate(R.layout.fragment_end, container,
 					false);
 			return rootView;
 		}
 	}
-	
+
 }

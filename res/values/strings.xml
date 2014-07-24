@@ -8,5 +8,6 @@
     <string name="title_activity_bl">BlActivity</string>
     <string name="hello_world">Hello world!</string>
     <string name="playing">Playing</string>
+    <string name="title_activity_end">EndActivity</string>
 
 </resources>
