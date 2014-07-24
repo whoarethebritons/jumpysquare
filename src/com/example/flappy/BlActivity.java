@@ -4,16 +4,31 @@ package com.example.flappy;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
+import android.content.Context;
 import android.content.Intent;
+import android.content.res.Resources;
+import android.graphics.Rect;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.view.*;
 import android.widget.EditText;
 import android.os.Build;
 
 public class BlActivity extends ActionBarActivity {
-
+	Drawable mDrawable; 
+	int width = 50;
+    int height = 50;
+    private Context cont;
+	int dx = (cont.getWallpaperDesiredMinimumWidth()-width)/2;
+    int dy = (cont.getWallpaperDesiredMinimumHeight()-height)/2;
+    
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
+		Resources res = getResources();
+		mDrawable = res.getDrawable(R.drawable.rect);
+		
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_bl);
 
@@ -23,11 +38,32 @@ public class BlActivity extends ActionBarActivity {
 		}
 	}
 	
-	public void playGame(View view) {
-	    Intent intent = new Intent(this, BlActivity.class);
-	    startActivity(intent);
-	}
+	private RefreshHandler mRedrawHandler = new RefreshHandler();
 
+	  class RefreshHandler extends Handler {
+		  @Override
+	    public void handleMessage(Message msg) {
+	      BlActivity.this.updateUI();
+	    }
+
+	    public void sleep(long delayMillis) {
+	      this.removeMessages(0);
+	      sendMessageDelayed(obtainMessage(0), delayMillis);
+	    }
+	  };
+	  
+	  private void updateUI(){
+		mRedrawHandler.sleep(1000);
+		setLoc();
+		/*
+		if(! mcdv.getin()) {
+			endGame(mcdv);
+		}
+		*/
+		setContentView(R.layout.activity_bl);
+		
+	    
+	   }
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 
@@ -64,5 +100,17 @@ public class BlActivity extends ActionBarActivity {
 			return rootView;
 		}
 	}
-	
+	public void setLoc() {
+		Rect rect = mDrawable.copyBounds();
+		rect.offset(0, -10);
+  	  	mDrawable.setBounds(rect);
+    }
+	public boolean onTouchEvent(MotionEvent e) {	        
+        switch (e.getAction()) {
+        	case MotionEvent.ACTION_UP:
+        		setLoc();
+        		setContentView(R.layout.activity_bl);
+        }
+        return true;
+    }
 }
